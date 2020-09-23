@@ -2,10 +2,10 @@
   <div class="row mx-3 p-2">
     <div class="col-4">
       <h1 class="text-center text-primary">Breweries List</h1>
-      <BrewList :brews="brews"/>
+      <BrewList :brews="filteredBrews"/>
     </div>
     <div class="col-8">
-      <BrewMap/>
+      <BrewMap :brews="filteredBrews"/>
     </div>
   </div>
 </template>
@@ -24,6 +24,11 @@ export default {
   data() {
     return {
       brews: []
+    }
+  },
+  computed: {
+    filteredBrews () {
+      return this.brews.filter(brew => brew.state == 'Arizona')
     }
   },
   mounted() {

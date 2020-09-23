@@ -1,6 +1,10 @@
 <template>
   <div class="row mt-2 map">
-		<l-map :zoom="zoom" :center="center">
+		<!-- <h2>Center is {{currentCenter}}, Zoom is {{currentZoom}}</h2> -->
+		<l-map :zoom="zoom" :center="center"
+			@update:zoom="zoomUpdate"
+			@update:center="centerUpdate"
+		>
 			<l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
 			<l-marker
 				:key="i"
@@ -23,8 +27,10 @@
 		},
 		data() {
 			return {
-				zoom: 13,
-				center: L.latLng(47.413220, -1.219482),
+				zoom: 7,
+				currentZoom: 7,
+				center: L.latLng(33.163354, -112.221328),
+				currentCenter: L.latLng(33.163354, -112.221328),
 				url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				marker: L.latLng(47.413220, -1.219482),
@@ -38,7 +44,13 @@
 		methods: {
 			latLng(lat, lng) {
 				return L.latLng(lat, lng)
-			}
+			},
+			centerUpdate(center) {
+				this.currentCenter = center.toString()
+			},
+			zoomUpdate(zoom) {
+				this.currentZoom = zoom
+			},
 		}
   }
 </script>
