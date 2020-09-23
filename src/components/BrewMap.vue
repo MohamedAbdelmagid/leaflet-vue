@@ -2,7 +2,12 @@
   <div class="row mt-2 map">
 		<l-map :zoom="zoom" :center="center">
 			<l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-			<l-marker :lat-lng="marker"></l-marker>
+			<l-marker
+				:key="i"
+				v-for="(brew, i) in brews"
+				:lat-lng="latLng(brew.latitude, brew.longitude)"
+			>
+			</l-marker>
 		</l-map>
   </div>
 </template>
@@ -13,6 +18,9 @@
 
   export default {
 		name: 'BrewMap',
+		props: {
+			brews: Array
+		},
 		data() {
 			return {
 				zoom: 13,
@@ -27,6 +35,11 @@
 			LTileLayer,
 			LMarker,
 		},
+		methods: {
+			latLng(lat, lng) {
+				return L.latLng(lat, lng)
+			}
+		}
   }
 </script>
 
