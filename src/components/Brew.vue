@@ -6,14 +6,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6 brew-list">
-        <div class="card" style="width: 18rem;">
-          <ul class="list-group">
-            <li v-for="(brew, i) in brews" :key="i" class="list-group-item">
-              {{ brew.name }}, {{ brew.state }}
-            </li>
-          </ul>
-        </div>
+      <div class="col-6">
+        <BrewList :brews="brews"/>
       </div>
       <div class="col-6">
         <h2 class="text-center">right</h2>
@@ -24,9 +18,13 @@
 
 <script>
 import axios from 'axios'
+import BrewList from './BrewList.vue'
 
 export default {
   name: 'Brew',
+  components: {
+    BrewList
+  },
   data() {
     return {
       brews: []
@@ -44,13 +42,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.brew-list {
-  overflow-y: scroll;
-  height: 95vh;
-  li {
-    &:hover {
-      background-color: lightgray;
-    }
-  }
-}
 </style>
