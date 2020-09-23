@@ -11,6 +11,10 @@
 				v-for="(brew, i) in brews"
 				:lat-lng="latLng(brew.latitude, brew.longitude)"
 			>
+			<l-icon
+				:icon-size="iconSize"
+				:icon-url="icon"
+			></l-icon>
 			</l-marker>
 		</l-map>
   </div>
@@ -18,7 +22,8 @@
 
 <script>
 	import L from 'leaflet'
-	import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
+	import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet'
+	import beer from '../assets/beer-mug.png'
 
   export default {
 		name: 'BrewMap',
@@ -34,12 +39,15 @@
 				url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				marker: L.latLng(47.413220, -1.219482),
+				icon: beer,
+				iconSize: [15, 15]
 			}
 		},
 		components: {
 			LMap,
 			LTileLayer,
 			LMarker,
+			LIcon,
 		},
 		methods: {
 			latLng(lat, lng) {
