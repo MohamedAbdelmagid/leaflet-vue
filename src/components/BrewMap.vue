@@ -12,7 +12,7 @@
 				:lat-lng="latLng(brew.latitude, brew.longitude)"
 			>
 			<l-icon
-				:icon-size="iconSize"
+				:icon-size="brew.iconSize"
 				:icon-url="icon"
 			></l-icon>
 			</l-marker>
@@ -23,7 +23,7 @@
 <script>
 	import L from 'leaflet'
 	import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet'
-	import beer from '../assets/beer-mug.png'
+	import beer from '../assets/beer.png'
 
   export default {
 		name: 'BrewMap',
@@ -40,7 +40,6 @@
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				marker: L.latLng(47.413220, -1.219482),
 				icon: beer,
-				iconSize: [15, 15]
 			}
 		},
 		components: {
@@ -54,7 +53,7 @@
 				return L.latLng(lat, lng)
 			},
 			centerUpdate(center) {
-				this.currentCenter = center.toString()
+				this.currentCenter = center
 			},
 			zoomUpdate(zoom) {
 				this.currentZoom = zoom
