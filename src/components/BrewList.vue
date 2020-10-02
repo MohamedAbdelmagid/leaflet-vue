@@ -2,8 +2,10 @@
   <div class="card brew-list">
       <ul class="list-group">
         <li
-          v-for="(brew, i) in brews"
-          :key="i"
+          @mouseover="$emit('mouse-over-brew', index)"
+          @mouseleave="$emit('mouse-left-brew', index)"
+          v-for="(brew, index) in brews"
+          :key="index"
           class="list-group-item"
         >{{ brew.name }}, {{ brew.state }}</li>
       </ul>
@@ -15,7 +17,7 @@ export default {
   name: "BrewList",
   props: {
     brews: Array
-  }
+  },
 };
 </script>
 
@@ -30,3 +32,4 @@ export default {
   }
 }
 </style>
+      
